@@ -23,10 +23,24 @@ app_name = "website"
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('products', views.products, name='products'),
-    path('products/<str:title>', views.singleProduct, name='single-product'),
+    path('products', views.productsView, name='products'),
+    path('products/<str:title>', views.singleProductView, name='single-product'),
     path('about-us', views.about, name='about-us'),
     path('admin/', admin.site.urls),
      path("__reload__/", include("django_browser_reload.urls")),
+    # auth urls
+    path('auth/login', views.login_view, name='login'),
+    path('auth/logout', views.logout_view, name='logout'),
+    path('auth/register', views.register_view, name='register'),
+
+    # dashboard
+    path('dashboard', views.dashboard, name='dashboard'),
+    path('dashboard/account', views.user_account, name='user_account'),
+    path('dashboard/settings', views.user_setting, name='user_setting'),
+    path('dashboard/orders', views.user_orders, name='user_orders'),
+
+    # manage products
+    path('dashboard/products', views.products_dashboard_view, name='products_dashboard'),
+    path('dashboard/products/add-product', views.add_product_view, name='add_product'),
 
 ]
